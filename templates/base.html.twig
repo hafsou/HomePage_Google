@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Google HomePage{% endblock %}</title>
+
+        <link href="{{ asset('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap') }} rel="stylesheet">
+
+        <link href="{{ asset('https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css') }}" rel="stylesheet">
+
+        <link href="{{ asset('css/google.css') }}" rel="stylesheet"/>
+
+        {% block stylesheets %}{% endblock %}
+    </head>
+    
+    <body>
+         <div class="top-bar">
+      <div class="bar-right">
+        <div class="menu">
+          <a href="">Gmail</a>
+          <a href="">Images</a>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="search-wrapper">
+        <a href="" class="search-logo">
+          <img src="images/gge.gif">
+        </a>
+        <div class="search-bar">
+          <div class="search-icon">
+            <i class="fa fa-search"></i>
+          </div>
+          <input type="text">
+          <div class="search-icon right">
+            <i class="fa fa-microphone"></i>
+          </div>
+        </div>
+        <div class="search-buttons">
+          <a href="">Recherche Google</a>
+          <a href="">J'ai de la chance</a>
+        </div>
+        <p class="search-info">
+          Google disponible en : <a href="">English</a>
+        </p>
+      </div>
+    </div>
+    <div class="bottom-bar">
+      <div class="bar-left">
+        <div class="menu">
+          <a href="">Publicité</a>
+          <a href="">Entreprise</a>
+          <a href="">à propos</a>
+        </div>
+      </div>
+      </div>
+   
+    <button class="open-button" onclick="openForm()">Consultez vos notes</button>
+    <div class="chat-popup" id="myForm">
+    <form action="" method="post" class="form-container">
+         <h1>Cahier de notes</h1>
+        {% for note in notes %}
+
+        <tr>
+            <textarea>{{ note.contenu }}</textarea> 
+        </tr>
+
+        {% endfor %}
+        <tr>
+            <textarea name="contenu" placeholder="Ecrire note.." name="msg" required></textarea> 
+        </tr>
+    
+        <tr>
+            <td><button type="submit" class="btn">Ajouter</button></td>
+            <td><button type="button" class="btn cancel" onclick="closeForm()">Fermer</button></td>
+        </tr>
+    </form>
+
+    </div>
+    
+    <script>
+        function openForm() {
+
+            document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+
+            document.getElementById("myForm").style.display = "none";
+        }
+
+        </script>
+
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
